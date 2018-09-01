@@ -10,16 +10,13 @@ package:
 source:
   fn: praise_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/praise_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/praise/praise_{{ version }}.tar.gz
-
-
+    - {{ cran_mirror }}/src/contrib/praise_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/praise/praise_{{ version }}.tar.gz
   sha256: 5c035e74fd05dfa59b03afe0d5f4c53fbf34144e175e90c53d09c6baedf5debd
 
 build:
-  number: 0
-  skip: True  # [win32]
-
+  merge_build_host: True  # [win]
+  number: 1
 
   rpaths:
     - lib/R/lib/
@@ -27,6 +24,9 @@ build:
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+
+  host:
     - r-base
 
   run:
@@ -34,10 +34,9 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('praise')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('praise')"           # [not win]
     - "\"%R%\" -e \"library('praise')\""  # [win]
-
-
 
 about:
   home: https://github.com/gaborcsardi/praise
@@ -45,10 +44,16 @@ about:
   summary: Build friendly R packages that praise their users if they have done something good,
     or they just need it to feel better.
   license_family: MIT
-  license_file: LICENSE
-
-
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\MIT'  # [win]
 
 extra:
   recipe-maintainers:
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
     - croth1
+    - ocefpaf
+    - dbast
