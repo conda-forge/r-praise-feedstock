@@ -1,11 +1,11 @@
-About r-praise
-==============
+About r-praise-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-praise-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/gaborcsardi/praise
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-praise-feedstock/blob/main/LICENSE.txt)
 
 Summary: Build friendly R packages that praise their users if they have done something good, or they just need it to feel better.
 
